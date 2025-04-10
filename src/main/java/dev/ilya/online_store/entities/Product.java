@@ -31,10 +31,10 @@ public class Product {
     @Column(name = "product_ingredients", nullable = false)
     private String ingredients;
 
-    @Column(name = "product_gender")
+    @Column(name = "product_gender", nullable = false)
     private String productGender;
 
-    @Column(name = "product_volume")
+    @Column(name = "product_volume", nullable = false)
     private String productVolume;
 
     @Column(name = "product_country", nullable = false)
@@ -42,6 +42,9 @@ public class Product {
 
     @Column(name = "product_price", precision = 10, scale = 2, nullable = false)
     private BigDecimal productPrice;
+
+    @Column(name = "product_discount", precision = 5, scale = 2)
+    private BigDecimal productDiscount;
 
     @Column(name = "product_quantity_left",nullable = false)
     private int productQuantityLeft;

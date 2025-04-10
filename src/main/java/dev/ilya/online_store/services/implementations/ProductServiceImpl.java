@@ -1,0 +1,51 @@
+package dev.ilya.online_store.services.implementations;
+
+import dev.ilya.online_store.constants.errorMessage;
+import dev.ilya.online_store.entities.Product;
+import dev.ilya.online_store.services.ProductService;
+import dev.ilya.online_store.repositories.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+
+@Service
+@RequiredArgsConstructor
+public class ProductServiceImpl implements ProductService {
+
+    private final ProductRepository productRepository;
+
+    @Override
+    public Product getProductById(Long productId){
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new EntityNotFoundException(String.format(errorMessage.PRODUCT_NOT_FOUND)));
+    }
+
+    @Override
+    public List<Product> getAllProducts(){
+        return productRepository.findAll();
+    }
+
+    @Override
+    public List<Product> searchByName(String query){
+        return productRepository.findByProductTitleContainingIgnoreCase(query);
+    }
+
+    @Override
+    public List<Product> getDiscountedProducts(BigDecimal discount){
+        return productRepository.findByProductDiscountGreaterThan(BigDecimal.ZERO);
+    }
+
+    @Override
+    public Product saveProduct(Product product){
+        return productRepository.save(product);
+    }
+
+    @Override
+    public void deleteProductById(Long id){
+        productRepository.deleteById(id);
+    }
+}
