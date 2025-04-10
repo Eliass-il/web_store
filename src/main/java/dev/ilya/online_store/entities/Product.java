@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name="products")
 @EqualsAndHashCode(of = {"id"})
 public class Product {
 

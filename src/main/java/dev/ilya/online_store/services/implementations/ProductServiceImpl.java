@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getDiscountedProducts(BigDecimal discount){
+    public List<Product> getDiscountedProducts(){
         return productRepository.findByProductDiscountGreaterThan(BigDecimal.ZERO);
     }
 

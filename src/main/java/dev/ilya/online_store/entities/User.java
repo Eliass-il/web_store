@@ -1,6 +1,7 @@
 package dev.ilya.online_store.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,9 +10,9 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "users")
 public class User {
 
     @Id
@@ -40,6 +41,4 @@ public class User {
     @Column(name = "post_index")
     private String post_index;
 
-    @ManyToMany
-    private List<Product> productsList;
 }
