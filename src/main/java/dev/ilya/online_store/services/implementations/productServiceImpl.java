@@ -1,5 +1,6 @@
 package dev.ilya.online_store.services.implementations;
 
+import dev.ilya.online_store.constants.errorMessage;
 import dev.ilya.online_store.entities.Product;
 import dev.ilya.online_store.services.productService;
 import dev.ilya.online_store.repositories.productRepository;
@@ -14,8 +15,9 @@ import org.springframework.web.server.ResponseStatusException;
 public class productServiceImpl implements productService {
 
     private final productRepository productRepository;
+
     @Override
     public Product getProductById(Long productId){
-        return productRepository.findById(productId).orElseThrow(() -> ResponseStatusException(HttpStatus.NOT_FOUND, ErrorMessage.PRODUCT_NOT_FOUND));
+        return productRepository.findById(productId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage.PRODUCT_NOT_FOUND));
     }
 }
