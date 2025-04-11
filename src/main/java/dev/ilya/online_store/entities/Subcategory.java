@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -22,8 +24,15 @@ public class Subcategory {
     @Column(name = "subcategory_name")
     private String name;
 
+    @Column(unique = true, nullable = false)
+    private String slug;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @JsonIgnoreProperties("subcategories")
+    @JsonIgnoreProperties("subcategoryList")
     private Category category;
+
+    @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("subcategory")
+    private List<Product> productList;
 }

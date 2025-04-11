@@ -24,7 +24,15 @@ public class Category {
     @Column(name = "category_name")
     private String name;
 
+    @Column(unique = true, nullable = false)
+    private String slug;
+
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("category")
-    private List<Subcategory> subCategoryList;
+    private List<Subcategory> subcategoryList;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("category")
+    private List<Product> productList;
+
 }

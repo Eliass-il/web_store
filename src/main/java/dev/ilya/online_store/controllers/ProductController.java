@@ -36,6 +36,11 @@ public class ProductController {
         return productService.searchByName(query);
     }
 
+    @GetMapping("/{categorySlug}")
+    public List<Product> getByCategorySlug(@PathVariable String categorySlug){
+        return productService.getByCategorySlug(categorySlug);
+    }
+
     @PostMapping
     public Product saveProduct(@RequestBody Product product){
         return productService.saveProduct(product);

@@ -13,4 +13,5 @@ public interface ProductService {
     public Product getProductById(Long id);
     public Product saveProduct(Product product);
     public void deleteProductById(Long id);
+    public List<Product> getByCategorySlug(String slug);
 }

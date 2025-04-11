@@ -1,9 +1,11 @@
 package dev.ilya.online_store.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -47,4 +49,14 @@ public class Product {
 
     @Column(name = "product_quantity_left",nullable = false)
     private int productQuantityLeft;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    @JsonIgnoreProperties("productList")
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id")
+    @JsonIgnoreProperties("productList")
+    private Subcategory subcategory;
 }

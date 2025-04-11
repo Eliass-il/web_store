@@ -40,6 +40,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getByCategorySlug(String slug){
+        return productRepository.findByCategorySlug(slug);
+    }
+
+    @Override
     public Product saveProduct(Product product){
         return productRepository.save(product);
     }

@@ -10,4 +10,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByProductDiscountGreaterThan(BigDecimal discount);
     List<Product> findByProductTitleContainingIgnoreCase(String title);
+    List<Product> findByCategorySlug(String slug);
 }
