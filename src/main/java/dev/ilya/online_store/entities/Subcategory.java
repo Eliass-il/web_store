@@ -29,10 +29,5 @@ public class Subcategory {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @JsonIgnoreProperties("subcategoryList")
     private Category category;
-
-    @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("subcategory")
-    private List<Product> productList;
 }

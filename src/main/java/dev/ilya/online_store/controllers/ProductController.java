@@ -21,7 +21,7 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("id/{id}")
     public Product getProductById(@PathVariable Long id){
         return productService.getProductById(id);
     }
@@ -39,6 +39,11 @@ public class ProductController {
     @GetMapping("/{categorySlug}")
     public List<Product> getByCategorySlug(@PathVariable String categorySlug){
         return productService.getByCategorySlug(categorySlug);
+    }
+
+    @GetMapping("/{categorySlug}/{subcategorySlug}")
+    public List<Product> getByCategorySlugAndSubcategorySlug(@PathVariable String categorySlug, @PathVariable String subcategorySlug){
+        return productService.getByCategorySlugAndSubcategorySlug(categorySlug, subcategorySlug);
     }
 
     @PostMapping

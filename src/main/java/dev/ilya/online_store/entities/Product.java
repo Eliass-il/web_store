@@ -52,11 +52,9 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @JsonIgnoreProperties("productList")
     private Category category;
 
     @ManyToOne
     @JoinColumn(name = "subcategory_id")
-    @JsonIgnoreProperties("productList")
     private Subcategory subcategory;
 }
