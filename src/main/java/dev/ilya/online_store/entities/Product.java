@@ -30,7 +30,7 @@ public class Product {
     private String productDescription;
 
     @Column(name = "product_ingredients", nullable = false)
-    private String ingredients;
+    private String productIngredients;
 
     @Column(name = "product_gender", nullable = false)
     private String productGender;
@@ -49,6 +49,9 @@ public class Product {
 
     @Column(name = "product_quantity_left",nullable = false)
     private int productQuantityLeft;
+
+    @Column(unique = true)
+    private String slug;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

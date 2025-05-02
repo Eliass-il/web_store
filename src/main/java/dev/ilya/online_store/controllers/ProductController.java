@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/product")
+@RequestMapping("api/products")
 @CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class ProductController {
@@ -24,6 +24,11 @@ public class ProductController {
     @GetMapping("id/{id}")
     public Product getProductById(@PathVariable Long id){
         return productService.getProductById(id);
+    }
+
+    @GetMapping("/slug/{slug}")
+    public Product getBySlug(@PathVariable String slug){
+        return productService.getBySlug(slug);
     }
 
     @GetMapping("/discounted")

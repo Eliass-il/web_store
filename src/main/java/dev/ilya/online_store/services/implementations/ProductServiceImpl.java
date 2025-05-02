@@ -25,6 +25,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product getBySlug(String slug){
+        return productRepository.findBySlug(slug);
+    }
+
+    @Override
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
@@ -51,7 +56,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product saveProduct(Product product){
-        return productRepository.save(product);
+        Product saved = productRepository.save(product);
+        String slug = product.getProductTitle()
+                .toLowerCase()
+                .replaceAll("[^a-z0-9]+", "-")
+                .replaceAll("^-|-$", "");
+        saved.setSlug(slug + "-" + saved.getId());
+        return productRepository.save(saved);
     }
 
     @Override
