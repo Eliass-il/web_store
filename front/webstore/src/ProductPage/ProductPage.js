@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import {CartContext} from "../Context/CartContext";
 
 function ProductPage() {
     const { slug } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+    const { addItem } = useContext(CartContext);
 
     useEffect(() => {
         axios.get(`http://localhost:5432/api/products/slug/${slug}`)
@@ -45,7 +47,9 @@ function ProductPage() {
                     <span style={styles.newPrice}>{product.productPrice} zł</span>
                 </div>
 
-                <button style={styles.button}>Add to cart</button>
+                <button style={styles.button} onClick={() => addItem(product)}>
+                    Add to cart
+                </button>
             </div>
         </div>
     );

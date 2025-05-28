@@ -1,5 +1,6 @@
 package dev.ilya.online_store.components;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.*;
 import javax.crypto.SecretKey;
@@ -29,6 +30,14 @@ public class JwtUtil {
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
+    }
+
+    public String extractTokenFromRequest(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            return authHeader.substring(7); // убираем "Bearer "
+        }
+        throw new RuntimeException("JWT token is missing or invalid");
     }
 
     public boolean validateToken(String token) {
